@@ -9,53 +9,53 @@
     "grids": [
     {
       "gridName": "A",
-      "gridCoord": "0",
-      "gridAngle": "0"
+      "gridCoord": 0,
+      "gridAngle": 0
     },
     {
       "gridName": "B",
-      "gridCoord": "50",
-      "gridAngle": "0"
+      "gridCoord": 50,
+      "gridAngle": 0
     },
     {
       "gridName": "1",
-      "gridCoord": "0",
-      "gridAngle": "90"
+      "gridCoord": 0,
+      "gridAngle": 90
     },
     {
       "gridName": "2",
-      "gridCoord": "25",
-      "gridAngle": "90"
+      "gridCoord": 25,
+      "gridAngle": 90
     },
     {
       "gridName": "3",
-      "gridCoord": "50",
-      "gridAngle": "90"
+      "gridCoord": 50,
+      "gridAngle": 90
     },
     {
       "gridName": "4",
-      "gridCoord": "75",
-      "gridAngle": "90"
+      "gridCoord": 75,
+      "gridAngle": 90
     },
     {
       "gridName": "5",
-      "gridCoord": "100",
-      "gridAngle": "90"
+      "gridCoord": 100,
+      "gridAngle": 90
     },
     {
       "gridName": "6",
-      "gridCoord": "125",
-      "gridAngle": "90"
+      "gridCoord": 125,
+      "gridAngle": 90
     },
     {
       "gridName": "7",
-      "gridCoord": "150",
-      "gridAngle": "90"
+      "gridCoord": 150,
+      "gridAngle": 90
     },
     {
       "gridName": "8",
-      "gridCoord": "175",
-      "gridAngle": "90"
+      "gridCoord": 175,
+      "gridAngle": 90
     }
     ]
   }

@@ -16,16 +16,16 @@ type Address struct {
 
 // Grid represents a grid in the JSON.
 type Grid struct {
-	GridName   string `json:"gridName"`
-	GridCoord  string `json:"gridCoord"`
-	GridAngle  string `json:"gridAngle"`
+	GridName  string  `json:"gridName"`
+	GridCoord float64 `json:"gridCoord"`
+	GridAngle float64 `json:"gridAngle"`
 }
 
 // Project represents the overall structure of the JSON.
 type Project struct {
-	ProjectName string   `json:"projectName"`
-	Address     Address  `json:"address"`
-	Grids       []Grid   `json:"grids"`
+	ProjectName string  `json:"projectName"`
+	Address     Address `json:"address"`
+	Grids       []Grid  `json:"grids"`
 }
 
 func main() {
@@ -51,7 +51,6 @@ func main() {
 
 	fmt.Println("Grids:")
 	for _, grid := range project.Grids {
-		fmt.Printf("  Grid Name: %s, Coord: %s, Angle: %s\n", grid.GridName, grid.GridCoord, grid.GridAngle)
+		fmt.Printf("  Grid Name: %s, Coord: %.3f, Angle: %.3f\n", grid.GridName, grid.GridCoord, grid.GridAngle)
 	}
 }
-
