@@ -2,12 +2,24 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 )
+
+type Todo struct {
+	Title string
+	Done  bool
+}
+
+type TodoPageData struct {
+	PageTitle string
+	Todos     []Todo
+}
 
 func main() {
 	http.HandleFunc("/", homePageHandler)
 	http.HandleFunc("/joe", joeHandler)
+	http.HandleFunc("/template", templateHandler)
 	fmt.Println("Browse to http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
@@ -20,6 +32,19 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 func joeHandler(w http.ResponseWriter, r *http.Request) {
 	// For this case, we will always pipe "Hello World" into the response writer
 	fmt.Fprintf(w, html(head(), body("Joe Legner is Cool!")))
+}
+
+func templateHandler(w http.ResponseWriter, r *http.Request) {
+	data := TodoPageData{
+		PageTitle: "My TODO list",
+		Todos: []Todo{
+			{Title: "Task 1", Done: false},
+			{Title: "Task 2", Done: true},
+			{Title: "Task 3", Done: true},
+		},
+	}
+	tmpl, _ := template.ParseFiles("templates/main.html")
+	tmpl.Execute(w, data)
 }
 
 func html(head string, body string) string {
@@ -56,7 +81,10 @@ func body(message string) string {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/joe">Joe is Cool</a>
+          <a class="nav-link active" aria-current="page" href="/joe">Joe is Co¸ol</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/template">Template</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="https://joelegner.github.io/themanual">The Manual</a></li>
