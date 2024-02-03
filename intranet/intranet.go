@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io"
 	"net/http"
+	"os"
 )
 
 type Todo struct {
@@ -20,6 +22,7 @@ func main() {
 	http.HandleFunc("/", homePageHandler)
 	http.HandleFunc("/joe", joeHandler)
 	http.HandleFunc("/template", templateHandler)
+	http.HandleFunc("/aci318-14", aci318_14Handler)
 	fmt.Println("Browse to http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
@@ -32,6 +35,26 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 func joeHandler(w http.ResponseWriter, r *http.Request) {
 	// For this case, we will always pipe "Hello World" into the response writer
 	fmt.Fprintf(w, html(head(), body("Joe Legner is Cool!")))
+}
+
+func aci318_14Handler(w http.ResponseWriter, r *http.Request) {
+	// Open file
+	f, err := os.Open("resources/aci318-14.pdf")
+	if err != nil {
+		fmt.Println(err)
+		w.WriteHeader(500)
+		return
+	}
+	defer f.Close()
+
+	//Set header
+	w.Header().Set("Content-type", "application/pdf")
+
+	//Stream to response
+	if _, err := io.Copy(w, f); err != nil {
+		fmt.Println(err)
+		w.WriteHeader(500)
+	}
 }
 
 func templateHandler(w http.ResponseWriter, r *http.Request) {
