@@ -7,7 +7,7 @@ import (
 
 var index = []int{0, 0, 0, 0, 0, 0, 0, 0, 0}
 
-func readFile() string {
+func readFile() string { // TODO: Change this to an actual file read
 	return `
 Design metal building foundations | Determine program
     Get input | readFile function
