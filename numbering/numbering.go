@@ -7,7 +7,8 @@ import (
 
 var index = []int{0, 0, 0, 0, 0, 0, 0, 0, 0}
 
-var text = `
+func readFile() string {
+	return `
 Determine
     Get input
         Modeling Module
@@ -25,6 +26,7 @@ Determine
                     Return T_min
             Obtain model instance
 `
+}
 
 func calcIndentLevel(line string) int {
 	retval := -1
@@ -53,6 +55,7 @@ func calculateIndex(line string) string {
 
 func main() {
 	curLevel := 0
+	text := readFile()
 	for _, line := range strings.Split(text, "\n")[1 : len(strings.Split(text, "\n"))-1] {
 		lineLevel := calcIndentLevel(line)
 		if lineLevel < curLevel {
