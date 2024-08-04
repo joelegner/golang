@@ -5,6 +5,23 @@ import (
 	"strings"
 )
 
+type Node struct {
+	name   string
+	parent *Node
+}
+
+type Hierarchy struct {
+	nodes []Node
+}
+
+func getHierarchy() Hierarchy {
+	h := Hierarchy{}
+	h.nodes = append(h.nodes, Node{name: "FR0", parent: nil})
+	h.nodes = append(h.nodes, Node{name: "FR1", parent: &h.nodes[0]})
+	h.nodes = append(h.nodes, Node{name: "FR2", parent: &h.nodes[0]})
+	return h
+}
+
 var index = []int{0, 0, 0, 0, 0, 0, 0, 0, 0}
 
 func readFile() string { // TODO: Change this to an actual file read
@@ -23,7 +40,7 @@ Design metal building foundations | Determine program
                     Return rebar yield
                     Return q_a
                     Return T_inc
-                    Return T_min
+                   	Return T_min
             Obtain model instance
 `
 }
@@ -84,4 +101,6 @@ func main() {
 			fmt.Printf("DP%s: %s\n", lineIndex, strings.TrimSpace(designParameter))
 		}
 	}
+	h := getHierarchy()
+	println(h.nodes[0].name)
 }
