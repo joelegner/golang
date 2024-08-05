@@ -8,6 +8,15 @@ import (
 	"strings"
 )
 
+func processArgs() {
+	args := os.Args[1:]
+	for i := 0; i < len(args); i++ {
+		if args[i] == "-h" || args[i] == "--help" {
+			printUsage()
+		}
+	}
+}
+
 func getRange() (int, int) {
 	args := os.Args
 	low := 1
@@ -82,5 +91,6 @@ func getNumber() int {
 }
 
 func main() {
+	processArgs()
 	fmt.Println(getNumber())
 }
