@@ -13,6 +13,14 @@ We want the program to fail if:
 2. the second argument is larger than the first, or
 3. either argument is negative
 
+- FR: Run the program when called for by the user. DP: `go install rando`.
+- FR: Follow a logical sequence of events. DP: `main()` function.
+- FR: Get the range to use. DP: `getRange()` function.
+- FR: Calculate the number. DP: `getNumber()` function.
+- FR: Print the number. `main()` function, `fmt` print statement. 
+- FR: Print a message if there is an invalid argument given by the user. DP: `printInvalidArg()` function. 
+- FR: Print a usage message, giving command, options, and examples. DP: `printUsage()` function. 
+
 ```
 Case: No argument given
     use default range 1-100
