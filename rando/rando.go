@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 func main() {
-	fmt.Println("Joe Legner is cool.")
+	randomInt := rand.Intn(100) + 1
+	fmt.Println(randomInt)
 }
