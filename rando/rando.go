@@ -6,6 +6,10 @@ import (
 	"os"
 )
 
+func getRange() (int, int) {
+	return 1, 100
+}
+
 func print_usage() {
 	fmt.Println(`
 NAME
@@ -36,7 +40,8 @@ OPTIONS
 }
 
 func main() {
-	randomInt := rand.Intn(100) + 1
+	low, high := getRange()
+	randomInt := rand.Intn(high-low+1) + low
 	fmt.Println(randomInt)
 
 	args := os.Args
