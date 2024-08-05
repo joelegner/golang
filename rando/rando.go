@@ -4,13 +4,50 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func getRange() (int, int) {
-	return 1, 100
+	args := os.Args
+	low := 1
+	high := 100
+
+	if len(args[1:]) == 1 {
+		if h, err := strconv.Atoi(args[1:][0]); err == nil {
+			high = h
+		} else {
+			printInvalidArg()
+			printUsage()
+			os.Exit(1)
+		}
+	}
+
+	if len(args[1:]) == 2 {
+		if l, err := strconv.Atoi(args[1:][0]); err == nil {
+			low = l
+		} else {
+			printInvalidArg()
+			printUsage()
+			os.Exit(1)
+		}
+		if h, err := strconv.Atoi(args[1:][1]); err == nil {
+			high = h
+		} else {
+			printInvalidArg()
+			printUsage()
+			os.Exit(1)
+		}
+	}
+
+	return low, high
 }
 
-func print_usage() {
+func printInvalidArg() {
+	fmt.Println("Invalid argument: " + strings.Join(os.Args[1:], " "))
+}
+
+func printUsage() {
 	fmt.Println(`
 NAME
     rando - generate random integers
@@ -39,33 +76,11 @@ OPTIONS
     `)
 }
 
-func main() {
+func getNumber() int {
 	low, high := getRange()
-	randomInt := rand.Intn(high-low+1) + low
-	fmt.Println(randomInt)
+	return rand.Intn(high-low+1) + low
+}
 
-	args := os.Args
-	fmt.Printf("Number of Args = %d\n", len(args))
-	fmt.Printf("Type of Args = %T\n", args)
-	fmt.Println(args)
-	print_usage()
-
-	/*
-	   Let's think through this argument parsing problem.
-	   We already have the list of arguments.
-	   We want the program to fail if:
-	       1. the arguments are not integers.
-	       2. the second argument is larger than the first
-	       3. either argument is negative
-	   Case: No argument given
-	       use default range 1-100
-	   Case: One integer given
-	       if the integer is n, the range is 1-n.
-	       Case: Two integers given
-	       if the integers are i and j, the range is i-j.
-	   Else: Something else
-	       Respond with an error message.
-	       Print usage message.
-	       Give examples.
-	*/
+func main() {
+	fmt.Println(getNumber())
 }
