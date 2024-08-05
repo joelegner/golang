@@ -90,7 +90,7 @@ OPTIONS
 
 It could benefit from improvements. 
 
-- [X] Add ability to use -h or --help flag to print the usage instructions.
+- [X] ~~Add ability to use -h or --help flag to print the usage instructions.~~
 - [ ] Add verbose mode with -v or --verbose that prints more messages.
 - [ ] In verbose mode, print when reverting to default range. 
 - [ ] In verbose mode, print when reverting to default lower limit. 
